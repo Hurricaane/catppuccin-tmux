@@ -22,8 +22,13 @@ show_vpn() {
 }
 
 get_vpn_name() {
-  if (nmcli -f NAME,TYPE con show --active | grep -i "vpn" 1>/dev/null); then
-    nmcli -f NAME,TYPE con show --active | grep --color=never -i "vpn" | awk '{print $1}'
+  vpn=""
+  if command -v nmcli &>/dev/null; then
+    vpn=$(nmcli -f NAME,TYPE con show --active | grep --color=never -i "vpn" | awk '{print $1}')
+  fi
+
+  if [ -n "$vpn" ]; then
+    echo "$vpn"
   else
     echo "No Active VPN"
   fi
