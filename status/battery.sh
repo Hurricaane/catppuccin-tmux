@@ -15,8 +15,8 @@ show_battery() {
 
   index=$1
   icon=$(get_tmux_option "@catppuccin_battery_icon" "$battery_icon")
-  color=$(get_tmux_option "@catppuccin_battery_icon" "$thm_red")
-  text=$(get_tmux_option "@catppuccin_battery_icon" "$battery_percentage")
+  color=$(get_tmux_option "@catppuccin_battery_color" "$thm_red")
+  text=$(get_tmux_option "@catppuccin_battery_text" "$battery_percentage")
   module=$(build_status_module "$index" "$icon" "$color" "$text")
 
   echo "$module"
